@@ -18,7 +18,8 @@ public class bat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropGold = Random.Range(1, 3);   // o
+        dropGold = Random.Range(1, 4);   // o
+        gameManager.I.enemyNumber += 1f;
         anim = GetComponent<Animator>();
         List<float> y = new List<float>();
         List<float> x = new List<float>();
@@ -98,9 +99,9 @@ public class bat : MonoBehaviour
                     goblin.I.expPoint += exp;  // 경험치
                     goblin.I.gold += dropGold;  // 골드
                     anim.SetBool("monsterDie", true);  
-                    if(drop <= 40f)  // 아이템 드랍1
+                    if(drop <= 30f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.gloveTalisman, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.batWing, transform.position, Quaternion.identity);
                     }
                     else if(drop >= 40f & drop <= 70f)
                     {
@@ -132,9 +133,9 @@ public class bat : MonoBehaviour
                     goblin.I.expPoint += exp;  // 경험치
                     goblin.I.gold += dropGold;  // 골드
                     anim.SetBool("monsterDie", true);
-                    if(drop <= 40f)  // 아이템 드랍1
+                    if(drop <= 30f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.gloveTalisman, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.batWing, transform.position, Quaternion.identity);
                     }
                     else if(drop >= 40f & drop <= 70f)
                     {
@@ -188,7 +189,7 @@ public class bat : MonoBehaviour
                     anim.SetBool("monsterDie", true);
                     if(drop <= 40f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.gloveTalisman, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.batWing, transform.position, Quaternion.identity);
                     }
                     else if(drop >= 40f & drop <= 70f)
                     {

@@ -8,10 +8,10 @@ public class fireElf : MonoBehaviour
     // 드랍 아이템 수정 필수 - 기본공격 / 스킬공격에 맞았을 때 구문 둘 다 수정해줘야함
     // 투사체 발사하는 몬스터의 경우 투사체 함수 작성해줘야함.
     // 몬스터 추가시 애니메이션 파라미터 네임 맞춰주기
-    float hp = 30f;   // o
-    float fullHp = 30f;   // o
+    float hp = 50f;   // o
+    float fullHp = 50f;   // o
     float speed = 0.7f;   // o
-    float damage = 5f;   // o
+    float damage = 8f;   // o
     float exp = 25f;   // o
     int dropGold;
     public Animator anim;
@@ -19,7 +19,8 @@ public class fireElf : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropGold = Random.Range(1, 3);   // o
+        dropGold = Random.Range(15, 21);   // o
+        gameManager.I.enemyNumber += 1f;
         anim = GetComponent<Animator>();
         List<float> y = new List<float>();
         List<float> x = new List<float>();
@@ -80,17 +81,29 @@ public class fireElf : MonoBehaviour
                     goblin.I.expPoint += exp;  // 경험치
                     goblin.I.gold += dropGold;  // 골드
                     anim.SetBool("monsterDie", true);  
-                    if(drop <= 40f)  // 아이템 드랍1
+                    if(drop < 15f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.gloveTalisman, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.apple, transform.position, Quaternion.identity);
                     }
-                    else if(drop >= 40f & drop <= 70f)
+                    else if(drop >= 15f & drop < 20f)
                     {
-                        //Instantiate(itemManager.I.theOneRing, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.arrowTalisman, transform.position, Quaternion.identity);
                     }
-                    else if(drop >= 70f)  // 아이템 드랍2
+                    else if(drop > 20f & drop < 25f)  // 아이템 드랍2
                     {
-                        //Instantiate(itemManager.I.magicRing, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.bowTalisman, transform.position, Quaternion.identity);
+                    }
+                    else if(drop > 30f & drop < 35f)  // 아이템 드랍2
+                    {
+                        Instantiate(itemManager.I.greyKnightArmor, transform.position, Quaternion.identity);
+                    }
+                    else if(drop > 35f & drop < 40f)  // 아이템 드랍2
+                    {
+                        Instantiate(itemManager.I.salamanderSword, transform.position, Quaternion.identity);
+                    }
+                    else if(drop > 99f)  // 아이템 드랍2
+                    {
+                        Instantiate(itemManager.I.theOneRing, transform.position, Quaternion.identity);
                     }
                     Destroy(gameObject, 0.7f);
                 }

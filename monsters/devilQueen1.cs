@@ -8,8 +8,8 @@ public class devilQueen1 : MonoBehaviour
     // 드랍 아이템 수정 필수 - 기본공격 / 스킬공격에 맞았을 때 구문 둘 다 수정해줘야함
     // 투사체 발사하는 몬스터의 경우 투사체 함수 작성해줘야함.
     // 몬스터 추가시 애니메이션 파라미터 네임 맞춰주기
-    float hp = 200f;   // o
-    float fullHp = 200f;   // o
+    float hp = 300f;   // o
+    float fullHp = 300f;   // o
     float speed = 0.7f;   // o
     float damage = 15f;   // o
     float exp = 100f;   // o

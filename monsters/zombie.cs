@@ -18,7 +18,8 @@ public class zombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropGold = Random.Range(1, 4);   // o
+        dropGold = Random.Range(2, 6);   // o
+        gameManager.I.enemyNumber += 1f;
         anim = GetComponent<Animator>();
         List<float> y = new List<float>();
         List<float> x = new List<float>();
@@ -96,14 +97,19 @@ public class zombie : MonoBehaviour
                     gameObject.transform.Find("hp/front").transform.localScale = new Vector3(0f, 1f, 1f);
                     speed = 0f;
                     goblin.I.expPoint += exp;  // 경험치
+                    goblin.I.gold += dropGold;  // 골드
                     anim.SetBool("monsterDie", true);  
-                    if(drop <= 40f)  // 아이템 드랍1
+                    if(drop <= 20f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.batWing, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.apple, transform.position, Quaternion.identity);
                     }
-                    else if(drop >= 60f)  // 아이템 드랍2
+                    else if(drop >= 40f & drop <= 45f)
                     {
-                        //Instantiate(itemManager.I.holySword, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.bronzeRing, transform.position, Quaternion.identity);
+                    }
+                    else if(drop >= 99f)  // 아이템 드랍2
+                    {
+                        Instantiate(itemManager.I.theOneRing, transform.position, Quaternion.identity);
                     }
                     Destroy(gameObject, 0.7f);
                 }
@@ -125,14 +131,19 @@ public class zombie : MonoBehaviour
                     gameObject.transform.Find("hp/front").transform.localScale = new Vector3(0f, 1f, 1f);
                     speed = 0f;
                     goblin.I.expPoint += exp;  // 경험치
+                    goblin.I.gold += dropGold;  // 골드
                     anim.SetBool("monsterDie", true);
-                    if(drop <= 40f)  // 아이템 드랍1, o
+                    if(drop <= 20f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.batWing, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.apple, transform.position, Quaternion.identity);
                     }
-                    else if(drop >= 60f)  // 아이템 드랍2, o
+                    else if(drop >= 40f & drop <= 45f)
                     {
-                        //Instantiate(itemManager.I.holySword, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.bronzeRing, transform.position, Quaternion.identity);
+                    }
+                    else if(drop >= 99f)  // 아이템 드랍2
+                    {
+                        Instantiate(itemManager.I.theOneRing, transform.position, Quaternion.identity);
                     }
                     Destroy(gameObject, 0.7f);
                 }
@@ -176,17 +187,17 @@ public class zombie : MonoBehaviour
                     goblin.I.expPoint += exp;  // 경험치
                     goblin.I.gold += dropGold;  // 골드
                     anim.SetBool("monsterDie", true);
-                    if(drop <= 40f)  // 아이템 드랍1
+                    if(drop <= 20f)  // 아이템 드랍1
                     {
-                        //Instantiate(itemManager.I.gloveTalisman, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.apple, transform.position, Quaternion.identity);
                     }
-                    else if(drop >= 40f & drop <= 70f)
+                    else if(drop >= 40f & drop <= 45f)
                     {
-                        //Instantiate(itemManager.I.theOneRing, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.bronzeRing, transform.position, Quaternion.identity);
                     }
-                    else if(drop >= 70f)  // 아이템 드랍2
+                    else if(drop >= 99f)  // 아이템 드랍2
                     {
-                        //Instantiate(itemManager.I.magicRing, transform.position, Quaternion.identity);
+                        Instantiate(itemManager.I.theOneRing, transform.position, Quaternion.identity);
                     }
                     Destroy(gameObject, 0.7f);
                 }

@@ -25,6 +25,7 @@ public class gameManager : MonoBehaviour
     public Canvas shopCanvas;
     public Text timeTxt;
     public float surviveTime;
+    public float enemyNumber = 0;
     public static gameManager I;
     
 
@@ -38,7 +39,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         InvokeRepeating("makeMonster", 0.0f, 2.0f);    
         canvas.GetComponent<RectTransform>().transform.position = new Vector3(1000f, 1000f, 0f);
-        shopCanvas.GetComponent<RectTransform>().transform.position = new Vector3(1000f, 995f, 0);    
+        shopCanvas.GetComponent<RectTransform>().transform.position = new Vector3(1000f, 995f, 0);
+        Invoke("bossCreate", 250f);    
     }
 
     // Update is called once per frame
@@ -154,108 +156,106 @@ public class gameManager : MonoBehaviour
 
     public void makeMonster()   // 몬스터 생성, 난이도 조절
     {
-        if(surviveTime >= 0f & surviveTime <= 10f)
+        if(enemyNumber <= 300f)
         {
-            Instantiate(bat);
-            //Instantiate(zombie);
-            //Instantiate(skeleton);
-            //Instantiate(slime);
-            //Instantiate(ghost);
-            //Instantiate(imp);
-            //Instantiate(arachne);
-            //Instantiate(devilQueen1);
-            //Instantiate(fireElf);
-            //Instantiate(worm);
-        }
-        
-        else if(surviveTime >= 10f & surviveTime <= 20f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 7) Instantiate(bat);
-            Instantiate(zombie);
-        }
-        else if(surviveTime >= 20f & surviveTime <= 30f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 3) Instantiate(bat);
-            if(p < 6) Instantiate(zombie);
-            Instantiate(skeleton);
-        }
-        else if(surviveTime >= 30f & surviveTime <= 40f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 2) Instantiate(bat);
-            if(p < 3) Instantiate(zombie);
-            if(p < 6) Instantiate(skeleton);
-            Instantiate(slime);
-        }
-        else if(surviveTime >= 40f & surviveTime <= 50f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 1) Instantiate(bat);
-            if(p < 2) Instantiate(zombie);
-            if(p < 4) Instantiate(skeleton);
-            if(p < 6) Instantiate(slime);
-            Instantiate(ghost);
-        }
-        else if(surviveTime >= 50f & surviveTime <= 60f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 1) Instantiate(bat);
-            if(p < 2) Instantiate(zombie);
-            if(p < 3) Instantiate(skeleton);
-            if(p < 5) Instantiate(slime);
-            if(p < 7) Instantiate(ghost);
-            Instantiate(imp);
-        }
-        else if(surviveTime >= 60f & surviveTime <= 70f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 1) Instantiate(bat);
-            if(p < 2) Instantiate(zombie);
-            if(p < 2) Instantiate(skeleton);
-            if(p < 3) Instantiate(slime);
-            if(p < 5) Instantiate(ghost);
-            if(p < 7) Instantiate(imp);
-            Instantiate(arachne);
-        }
-        else if(surviveTime >= 70f & surviveTime <= 80f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 1) Instantiate(bat);
-            if(p < 1) Instantiate(zombie);
-            if(p < 1) Instantiate(skeleton);
-            if(p < 2) Instantiate(slime);
-            if(p < 4) Instantiate(ghost);
-            if(p < 6) Instantiate(imp);
-            if(p < 7) Instantiate(arachne);
-            Instantiate(fireElf);
-        }
-        else if(surviveTime >= 80f & surviveTime <= 81f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 1) Instantiate(bat);
-            if(p < 1) Instantiate(zombie);
-            if(p < 1) Instantiate(skeleton);
-            if(p < 2) Instantiate(slime);
-            if(p < 3) Instantiate(ghost);
-            if(p < 4) Instantiate(imp);
-            if(p < 5) Instantiate(arachne);
-            if(p < 7) Instantiate(fireElf);
-            Instantiate(devilQueen1);
-        }
-        else if(surviveTime >= 90f)
-        {
-            float p = Random.Range(0f, 10f);
-            if(p < 2) Instantiate(bat);
-            if(p < 3) Instantiate(zombie);
-            if(p < 4) Instantiate(skeleton);
-            if(p < 5) Instantiate(slime);
-            if(p < 6) Instantiate(ghost);
-            if(p < 7) Instantiate(imp);
-            if(p < 8) Instantiate(arachne);
-            if(p < 9) Instantiate(fireElf);
-        }                  
+            if(surviveTime >= 0f & surviveTime <= 20f)
+            {
+                Instantiate(bat);
+                //Instantiate(zombie);
+                //Instantiate(skeleton);
+                //Instantiate(slime);
+                //Instantiate(ghost);
+                //Instantiate(imp);
+                //Instantiate(arachne);
+                //Instantiate(devilQueen1);
+                //Instantiate(fireElf);
+                //Instantiate(worm);
+            }
+            
+            else if(surviveTime >= 20f & surviveTime <= 40f)
+            {
+                float p = Random.Range(0f, 10f);
+                if(p < 7) Instantiate(bat);
+                Instantiate(zombie);
+            }
+            else if(surviveTime >= 40f & surviveTime <= 70f)
+            {
+                float p = Random.Range(0f, 10f);
+                if(p < 3) Instantiate(bat);
+                if(p < 7) Instantiate(zombie);
+                Instantiate(skeleton);
+            }
+            else if(surviveTime >= 70f & surviveTime <= 100f)
+            {
+                float p = Random.Range(0f, 10f);
+                if(p < 2) Instantiate(bat);
+                if(p < 4) Instantiate(zombie);
+                if(p < 8) Instantiate(skeleton);
+                Instantiate(slime);
+            }
+            else if(surviveTime >= 100f & surviveTime <= 130f)
+            {
+                float p = Random.Range(0f, 10f);
+                //if(p < 1) Instantiate(bat);
+                if(p < 3) Instantiate(zombie);
+                if(p < 5) Instantiate(skeleton);
+                if(p < 7) Instantiate(slime);
+                Instantiate(ghost);
+            }
+            else if(surviveTime >= 130f & surviveTime <= 170f)
+            {
+                float p = Random.Range(0f, 10f);
+                //if(p < 1) Instantiate(bat);
+                //if(p < 2) Instantiate(zombie);
+                if(p < 4) Instantiate(skeleton);
+                if(p < 5) Instantiate(slime);
+                if(p < 7) Instantiate(ghost);
+                Instantiate(imp);
+            }
+            else if(surviveTime >= 170f & surviveTime <= 200f)
+            {
+                float p = Random.Range(0f, 10f);
+                //if(p < 1) Instantiate(bat);
+                //if(p < 2) Instantiate(zombie);
+                if(p < 3) Instantiate(skeleton);
+                if(p < 4) Instantiate(slime);
+                if(p < 5) Instantiate(ghost);
+                if(p < 7) Instantiate(imp);
+                Instantiate(arachne);
+            }
+            else if(surviveTime >= 200f & surviveTime <= 250f)
+            {
+                float p = Random.Range(0f, 10f);
+                //if(p < 1) Instantiate(bat);
+                //if(p < 1) Instantiate(zombie);
+                if(p < 2) Instantiate(skeleton);
+                if(p < 3) Instantiate(slime);
+                if(p < 4) Instantiate(ghost);
+                if(p < 6) Instantiate(imp);
+                if(p < 7) Instantiate(arachne);
+                Instantiate(fireElf);
+            }
+            else if(surviveTime >= 250f)
+            {
+                float p = Random.Range(0f, 10f);
+                //if(p < 2) Instantiate(bat);
+                //if(p < 3) Instantiate(zombie);
+                if(p < 4) Instantiate(skeleton);
+                if(p < 5) Instantiate(slime);
+                if(p < 6) Instantiate(ghost);
+                if(p < 7) Instantiate(imp);
+                if(p < 8) Instantiate(arachne);
+                if(p < 9) Instantiate(fireElf);
+                //Instantiate(devilQueen1);
+            }
+        }                    
     }
 
+    public void bossCreate()
+    {
+        if(surviveTime >= 249f)
+        {
+            Instantiate(devilQueen1);
+        }
+    }
 }

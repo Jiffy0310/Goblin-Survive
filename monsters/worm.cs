@@ -19,6 +19,7 @@ public class worm : MonoBehaviour
     void Start()
     {
         dropGold = Random.Range(1, 3);   // o
+        gameManager.I.enemyNumber += 1f;
         anim = GetComponent<Animator>();
         List<float> y = new List<float>();
         List<float> x = new List<float>();
